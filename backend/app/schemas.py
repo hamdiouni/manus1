@@ -45,8 +45,9 @@ class Telemetry(TelemetryBase):
     created_at: datetime
     updated_at: Optional[datetime] = None
 
-    class Config:
-        from_attributes = True
+    model_config = {
+        "from_attributes": True
+    }
 
 class PredictionRequest(TelemetryBase):
     """Schema for SLA violation prediction requests."""
@@ -89,10 +90,10 @@ class ModelMetricsResponse(BaseModel):
     feature_importance: Optional[Dict[str, float]] = None
     created_at: datetime
 
-    model_config = {'protected_namespaces': ()}
-
-    class Config:
-        from_attributes = True
+    model_config = {
+        'protected_namespaces': (),
+        'from_attributes': True
+    }
 
 class AlertRequest(BaseModel):
     """Schema for alert configuration."""
