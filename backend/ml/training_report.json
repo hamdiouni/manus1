@@ -1,0 +1,137 @@
+{
+  "training_timestamp": "2025-06-17T15:11:26.480757",
+  "dataset_info": {
+    "total_samples": 1001,
+    "features": [
+      "bandwidth",
+      "throughput",
+      "congestion",
+      "packet_loss",
+      "latency",
+      "jitter",
+      "Percentage video occupancy",
+      "Bitrate video",
+      "Number videos",
+      "throughput_bandwidth_ratio",
+      "latency_jitter_ratio",
+      "congestion_packet_loss_combined",
+      "video_load",
+      "hour",
+      "minute",
+      "day_of_week",
+      "Routers_encoded",
+      "Planned route_encoded",
+      "Network measure_encoded",
+      "Network target_encoded",
+      "Video target_encoded"
+    ],
+    "target_distribution": {
+      "1": 763,
+      "0": 238
+    }
+  },
+  "model_performance": {
+    "random_forest": {
+      "accuracy": 0.9800995024875622,
+      "auc_score": 0.9975490196078431,
+      "precision": 0.9869281045751634,
+      "recall": 0.9869281045751634,
+      "f1_score": 0.9869281045751634,
+      "training_data_size": 800
+    },
+    "xgboost": {
+      "accuracy": 0.9900497512437811,
+      "auc_score": 0.9975490196078431,
+      "precision": 0.9934640522875817,
+      "recall": 0.9934640522875817,
+      "f1_score": 0.9934640522875817,
+      "training_data_size": 800
+    },
+    "xgboost_tuned": {
+      "accuracy": 0.9950248756218906,
+      "auc_score": 0.9982298474945533,
+      "precision": 0.9935064935064936,
+      "recall": 1.0,
+      "f1_score": 0.9967426710097721,
+      "training_data_size": 800
+    },
+    "isolation_forest": {
+      "anomaly_rate": 0.12437810945273632,
+      "anomaly_count": 25,
+      "total_samples": 201
+    }
+  },
+  "feature_importance": {
+    "random_forest": {
+      "congestion": 0.18466298977293538,
+      "hour": 0.16729329423170333,
+      "latency": 0.10807357106740653,
+      "Bitrate video": 0.06668229015606766,
+      "video_load": 0.06309057424775479,
+      "Percentage video occupancy": 0.05998736735904922,
+      "Routers_encoded": 0.05927827341187211,
+      "packet_loss": 0.05657880870995653,
+      "Planned route_encoded": 0.0550321066799722,
+      "congestion_packet_loss_combined": 0.040190657322711695,
+      "throughput_bandwidth_ratio": 0.023402093649551134,
+      "Number videos": 0.02265313395686567,
+      "throughput": 0.02241237479078151,
+      "Video target_encoded": 0.019548806849406863,
+      "jitter": 0.018682549758984878,
+      "latency_jitter_ratio": 0.01426260537528784,
+      "minute": 0.012650226849272717,
+      "Network target_encoded": 0.005518275810420014,
+      "bandwidth": 0.0,
+      "day_of_week": 0.0,
+      "Network measure_encoded": 0.0
+    },
+    "xgboost": {
+      "hour": 0.4893721342086792,
+      "congestion": 0.1830388754606247,
+      "packet_loss": 0.14807848632335663,
+      "latency": 0.12020383775234222,
+      "throughput": 0.040683165192604065,
+      "congestion_packet_loss_combined": 0.010571790859103203,
+      "Percentage video occupancy": 0.003307103645056486,
+      "latency_jitter_ratio": 0.0023066450376063585,
+      "minute": 0.0010282477596774697,
+      "Number videos": 0.0009500624728389084,
+      "jitter": 0.0004596476210281253,
+      "bandwidth": 0.0,
+      "Bitrate video": 0.0,
+      "throughput_bandwidth_ratio": 0.0,
+      "video_load": 0.0,
+      "day_of_week": 0.0,
+      "Routers_encoded": 0.0,
+      "Planned route_encoded": 0.0,
+      "Network measure_encoded": 0.0,
+      "Network target_encoded": 0.0,
+      "Video target_encoded": 0.0
+    },
+    "xgboost_tuned": {
+      "hour": 0.5509516000747681,
+      "congestion": 0.13268928229808807,
+      "packet_loss": 0.12850745022296906,
+      "latency": 0.10870961099863052,
+      "Percentage video occupancy": 0.04170873388648033,
+      "throughput": 0.022759927436709404,
+      "congestion_packet_loss_combined": 0.012603441253304482,
+      "jitter": 0.0007585791754536331,
+      "latency_jitter_ratio": 0.0006285589188337326,
+      "minute": 0.0005703787319362164,
+      "Number videos": 0.00011244838970014825,
+      "bandwidth": 0.0,
+      "Bitrate video": 0.0,
+      "throughput_bandwidth_ratio": 0.0,
+      "video_load": 0.0,
+      "day_of_week": 0.0,
+      "Routers_encoded": 0.0,
+      "Planned route_encoded": 0.0,
+      "Network measure_encoded": 0.0,
+      "Network target_encoded": 0.0,
+      "Video target_encoded": 0.0
+    }
+  },
+  "best_model": "xgboost_tuned",
+  "production_ready": true
+}

@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: sla_postgres_db_manus
+    environment:
+      POSTGRES_DB: sla_prediction
+      POSTGRES_USER: sla_user
+      POSTGRES_PASSWORD: sla_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5442:5442"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sla_user -d sla_prediction"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sla_backend_manus
+    environment:
+      DATABASE_URL: postgresql://sla_user:sla_password@db:5442/sla_prediction
+      SECRET_KEY: your-super-secret-key-for-jwt-and-more
+      TELEGRAM_BOT_TOKEN: ""
+      TELEGRAM_CHAT_ID: ""
+      EMAIL_USER: ""
+      EMAIL_PASSWORD: ""
+      ALERT_EMAIL: ""
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend/ml:/app/ml
+    restart: unless-stopped
+
+  # Frontend React App
+  frontend:
+    build:
+      context: ./frontend/sla-dashboard
+      dockerfile: Dockerfile
+    container_name: sla_frontend_manus
+    environment:
+      VITE_API_BASE_URL: http://localhost:8000
+      VITE_WS_URL: ws://localhost:8000/ws/telemetry
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
