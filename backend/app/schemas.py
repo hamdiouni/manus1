@@ -89,6 +89,8 @@ class ModelMetricsResponse(BaseModel):
     feature_importance: Optional[Dict[str, float]] = None
     created_at: datetime
 
+    model_config = {'protected_namespaces': ()}
+
     class Config:
         from_attributes = True
 
@@ -113,3 +115,4 @@ class HealthResponse(BaseModel):
     database_status: str = Field(..., description="Database connection status")
     model_status: str = Field(..., description="ML model status")
 
+    model_config = {'protected_namespaces': ()}

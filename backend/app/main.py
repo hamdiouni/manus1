@@ -46,7 +46,8 @@ async def lifespan(app: FastAPI):
     
     # Initialize ML predictor
     try:
-        ml_predictor = MLPredictor()
+        # Models are in the 'ml' subdirectory relative to the app's root
+        ml_predictor = MLPredictor(model_dir='ml/')
         logger.info("ML predictor initialized successfully")
     except Exception as e:
         logger.error(f"Failed to initialize ML predictor: {e}")
