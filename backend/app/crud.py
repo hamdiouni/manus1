@@ -9,7 +9,7 @@ import json
 from datetime import datetime, timedelta
 
 from . import models, schemas
-from backend.ml.predictor import MLPredictor
+from ml.predictor import MLPredictor
 
 class TelemetryCRUD:
     """CRUD operations for telemetry data."""

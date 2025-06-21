@@ -14,16 +14,16 @@ import logging
 import os
 from contextlib import asynccontextmanager
 
-from backend.app.database import SessionLocal, engine, get_db
-from backend.app.models import Base
-from backend.app.schemas import (
+from .database import SessionLocal, engine, get_db
+from .models import Base
+from .schemas import (
     TelemetryCreate, Telemetry, TelemetryUpdate, PredictionRequest, PredictionResponse,
     AnomalyRequest, AnomalyResponse, ExplanationResponse, ModelMetricsResponse,
     AlertRequest, WebSocketMessage, HealthResponse
 )
-from backend.app.crud import TelemetryCRUD, ModelMetricsCRUD, AlertLogCRUD
-from backend.ml.predictor import MLPredictor
-from backend.app.alerts import AlertManager
+from .crud import TelemetryCRUD, ModelMetricsCRUD, AlertLogCRUD
+from ml.predictor import MLPredictor
+from .alerts import AlertManager
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
